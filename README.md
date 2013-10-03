@@ -78,6 +78,9 @@ Deploying Application on App42 PaaS using Binary:
 		
 				  $ app42 deploy
                   $ Enter App Name: <your_app_name>
+				  $ 1: Binary
+				  $	2: Source
+				  $ Choose Upload Type [Binary]: 1
                   $ Would you like to deploy from the current directory? [Yn]: n
                   $ Binary Deployment Path: <your_binary_path>
                   $ This process may take a while, be patient with it.
