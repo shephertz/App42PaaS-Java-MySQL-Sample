@@ -92,6 +92,7 @@ public class DBManager {
 		} catch (Exception e) {
 			throw new SQLException("Error executing query: " + sqlQuery);
 		}
+		dataSource.getConnection().close();
 		return resultList;
 
 	}
@@ -102,7 +103,7 @@ public class DBManager {
 	 * @param query
 	 * @throws SQLException
 	 */
-	public void insert(final String query) {
+	public void insert(final String query) throws Exception{
 		JdbcTemplate db = new JdbcTemplate(DBManager.getInstance()
 				.getDataSource());
 
@@ -117,7 +118,7 @@ public class DBManager {
 				return ps;
 			}
 		}, keyHolder);
-
+		dataSource.getConnection().close();
 	}
 
 	public static void createTable(String query) throws SQLException {
@@ -129,6 +130,7 @@ public class DBManager {
 			throw new SQLException("Error while executing query: ' " + query
 					+ " '");
 		}
+		
 	}
 
 }
