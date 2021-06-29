@@ -1,0 +1,19 @@
+
+FROM tomcat:8.0-alpine
+# define variables
+ARG db_user
+ARG db_passwd
+ARG dp_port
+ARG db_ip
+ARG db_name
+ARG db_conf=ROOT/Config.properties
+# copy artifacts
+WORKDIR /usr/local/tomcat/
+ADD target/App42PaaS-Java-MySQL-Sample-0.0.1-SNAPSHOT.war webapps/
+ADD WebContent/Config.properties ROOT/
+# edit conf file
+RUN echo app42.paas.db.username = ${db_user} > ${db_conf} \
+&& echo app42.paas.db.port = ${dp_port} >> ${db_conf} \
+&& echo app42.paas.db.password = ${db_passwd} >> ${db_conf} \
+&& echo app42.paas.db.ip = ${db_ip} >> ${db_conf} \
+&& echo app42.paas.db.name = ${db_name} >> ${db_conf}
